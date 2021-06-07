@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1513286036289882774}
   - component: {fileID: 2495909635232361614}
   - component: {fileID: 5243763974669070009}
+  - component: {fileID: 2849452857378332858}
   m_Layer: 0
   m_Name: TommyGunBullet
   m_TagString: Untagged
@@ -73,15 +74,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 2618585871481277913, guid: 6025ceabaa096304a92fd9202f7f81c6, type: 3}
   m_Color: {r: 0.15183161, g: 0.6320754, b: 0.09838911, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.07, y: 0.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &2495909635232361614
@@ -122,8 +123,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.2}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.13, y: 0.2}
+    newSize: {x: 0.07, y: 0.19}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -131,3 +132,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.06582147, y: 0.12919042}
   m_EdgeRadius: 0
+--- !u!114 &2849452857378332858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001574182270493213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7aac736d95875043848b4ddd6dd01bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 8590969348096836332, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
+  - {fileID: 1113541966459799139, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
+  - {fileID: -8028908101293897662, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
+  - {fileID: -2856334601536584669, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
+  - {fileID: -6276712167630267867, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
+  shotSound: {fileID: 0}

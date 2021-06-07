@@ -22,5 +22,6 @@ public class Shooting : MonoBehaviour
         GameObject tommyGunBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = tommyGunBullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletSpeed, ForceMode2D.Impulse);
+        
     }
 }
