@@ -150,4 +150,3 @@ MonoBehaviour:
   - {fileID: -8028908101293897662, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
   - {fileID: -2856334601536584669, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
   - {fileID: -6276712167630267867, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
-  shotSound: {fileID: 0}
