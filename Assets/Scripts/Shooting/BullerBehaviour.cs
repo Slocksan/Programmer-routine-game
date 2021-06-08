@@ -9,6 +9,8 @@ public class BullerBehaviour : MonoBehaviour
 {
     public Sprite[] Sprites;
 
+    public float RicochetChance = 0;
+
     void Awake ()
     {
         SpriteRenderer bulletSprite = this.GetComponent<SpriteRenderer>();
@@ -18,7 +20,7 @@ public class BullerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Wall" && Random.Range(0, 5) != 0)
+        if (other.gameObject.tag == "Wall" && Random.Range(0f, 1f) > RicochetChance)
         {
             Destroy(this.gameObject);
         }
