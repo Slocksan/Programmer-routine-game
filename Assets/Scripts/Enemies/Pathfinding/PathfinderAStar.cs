@@ -8,8 +8,7 @@ namespace Enemies.Pathfinding
 {
     public class PathfinderAStar
     {
-        /*
-        public static List<Point> FindPath(Vector2 topLeftBorder, Vector2 bottomRightBorder, Vector2 start, Vector2 target)
+        public static List<Vector2> FindPath(Vector2 topLeftBorder, Vector2 bottomRightBorder, Vector2 start, Vector2 target)
         {
             var visitedNodes = new HashSet<PathNode>();
             var toOpen = new HashSet<PathNode>();
@@ -54,7 +53,7 @@ namespace Enemies.Pathfinding
             return null;
         }
         
-        private static Collection<PathNode> GetNeighbours(PathNode pathNode, 
+        private static List<PathNode> GetNeighbours(PathNode pathNode, 
             Vector2 goal, Vector2 topLeftBorder, Vector2 bottomRightBorder)
         {
             var result = new List<PathNode>();
@@ -72,33 +71,32 @@ namespace Enemies.Pathfinding
                 if (point.x < topLeftBorder.x || point.x >= bottomRightBorder.x || 
                     point.y < topLeftBorder.y || point.y >= bottomRightBorder.x )
                     continue;
-                if (new Rect(new Vector2(point.x - 0.5f, point.y - 0.5f) ,point).)
+                if (Physics.CheckSphere(new Vector3(point.x, point.y), 1))
                     continue;
-                // Заполняем данные для точки маршрута.
+                
                 var neighbourNode = new PathNode()
                 {
                     Position = point,
                     PrevNode = pathNode,
                     DistanceFromStart = pathNode.DistanceFromStart + 1,
-                    EstimateRemainingPathLength = GetHeuristicPathLength(point, goal)
+                    EstimateRemainingPathLength = Vector2.Distance(point, goal)
                 };
                 result.Add(neighbourNode);
             }
             return result;
         }
         
-        private static List<Point> GetPathForNode(PathNode pathNode)
+        private static List<Vector2> GetPathForNode(PathNode pathNode)
         {
-            var result = new List<Point>();
+            var result = new List<Vector2>();
             var currentNode = pathNode;
             while (currentNode != null)
             {
                 result.Add(currentNode.Position);
-                currentNode = currentNode.CameFrom;
+                currentNode = currentNode.PrevNode;
             }
             result.Reverse();
             return result;
         }
-        */
     }
 }
