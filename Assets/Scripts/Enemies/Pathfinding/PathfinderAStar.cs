@@ -8,7 +8,8 @@ namespace Enemies.Pathfinding
 {
     public class PathfinderAStar
     {
-        public static List<Point> FindPath(int[,] field, Vector2 start, Vector2 target)
+        /*
+        public static List<Point> FindPath(Vector2 topLeftBorder, Vector2 bottomRightBorder, Vector2 start, Vector2 target)
         {
             var visitedNodes = new HashSet<PathNode>();
             var toOpen = new HashSet<PathNode>();
@@ -33,35 +34,31 @@ namespace Enemies.Pathfinding
                 toOpen.Remove(currentNode);
                 visitedNodes.Add(currentNode);
 
-                foreach (var neighbourNode in GetNeighbours(currentNode, target, field))
+                foreach (var neighbourNode in GetNeighbours(currentNode, target, topLeftBorder, bottomRightBorder))
                 {
-                    // Шаг 7.
-                    if (visitedNodes.Count(node => node.Position == neighbourNode.Position) > 0)
+                    if (visitedNodes.Contains(neighbourNode))
                         continue;
-                    var openNode = toOpen.FirstOrDefault(node =>
+                    
+                    var sameNode = toOpen.FirstOrDefault(node =>
                         node.Position == neighbourNode.Position);
-                    // Шаг 8.
-                    if (openNode == null)
+                    
+                    if (sameNode == null)
                         toOpen.Add(neighbourNode);
-                    else
-                    if (openNode.DistanceFromStart > neighbourNode.DistanceFromStart)
+                    else if (sameNode.DistanceFromStart > neighbourNode.DistanceFromStart)
                     {
-                        // Шаг 9.
-                        openNode.PrevNode = currentNode;
-                        openNode.DistanceFromStart = neighbourNode.DistanceFromStart;
+                        sameNode.PrevNode = currentNode;
+                        sameNode.DistanceFromStart = neighbourNode.DistanceFromStart;
                     }
                 }
             }
-            // Шаг 10.
             return null;
         }
         
         private static Collection<PathNode> GetNeighbours(PathNode pathNode, 
-            Vector2 goal, int[,] field)
+            Vector2 goal, Vector2 topLeftBorder, Vector2 bottomRightBorder)
         {
-            var result = new Collection<PathNode>();
- 
-            // Соседними точками являются соседние по стороне клетки.
+            var result = new List<PathNode>();
+            
             Vector2[] neighbours = new Vector2[4]
             {
                 pathNode.Position + Vector2.down,
@@ -72,21 +69,17 @@ namespace Enemies.Pathfinding
 
             foreach (var point in neighbours)
             {
-                // Проверяем, что не вышли за границы карты.
-                if (point.X < 0 || point.X >= field.GetLength(0))
+                if (point.x < topLeftBorder.x || point.x >= bottomRightBorder.x || 
+                    point.y < topLeftBorder.y || point.y >= bottomRightBorder.x )
                     continue;
-                if (point.Y < 0 || point.Y >= field.GetLength(1))
-                    continue;
-                // Проверяем, что по клетке можно ходить.
-                if ((field[point.X, point.Y] != 0) && (field[point.X, point.Y] != 1))
+                if (new Rect(new Vector2(point.x - 0.5f, point.y - 0.5f) ,point).)
                     continue;
                 // Заполняем данные для точки маршрута.
                 var neighbourNode = new PathNode()
                 {
                     Position = point,
                     PrevNode = pathNode,
-                    DistanceFromStart = pathNode.DistanceFromStart +
-                                          GetDistanceBetweenNeighbours(),
+                    DistanceFromStart = pathNode.DistanceFromStart + 1,
                     EstimateRemainingPathLength = GetHeuristicPathLength(point, goal)
                 };
                 result.Add(neighbourNode);
@@ -106,10 +99,6 @@ namespace Enemies.Pathfinding
             result.Reverse();
             return result;
         }
-
-        private static int GetDistanceBetweenNeighbours()
-        {
-            return 1;
-        }
+        */
     }
 }
