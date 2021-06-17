@@ -27,7 +27,8 @@ namespace Enemies.Pathfinding
                 var currentNode = toOpen.OrderBy(node => 
                     node.EstimateFullPathLength).First();
 
-                if (currentNode.Position == target)
+                if (target.x - 0.5 < currentNode.Position.x && currentNode.Position.x < target.x + 0.5 &&
+                    target.y - 0.5 < currentNode.Position.y && currentNode.Position.y < target.y + 0.5)
                     return GetPathForNode(currentNode);
 
                 toOpen.Remove(currentNode);
@@ -68,9 +69,15 @@ namespace Enemies.Pathfinding
 
             foreach (var point in neighbours)
             {
-                if (point.x < topLeftBorder.x || point.x >= bottomRightBorder.x || 
-                    point.y < topLeftBorder.y || point.y >= bottomRightBorder.x )
+                if (point.x >= bottomRightBorder.x)
                     continue;
+                if(point.x < topLeftBorder.x)
+                    continue;
+                if (point.y > topLeftBorder.y)
+                    continue;
+                if(point.y <= bottomRightBorder.y)
+                    continue;
+                
                 if (Physics.CheckSphere(new Vector3(point.x, point.y), 1))
                     continue;
                 
@@ -90,13 +97,16 @@ namespace Enemies.Pathfinding
         {
             var result = new List<Vector2>();
             var currentNode = pathNode;
+
+            var isFirst = true;
+            
             while (currentNode != null)
             {
                 result.Add(currentNode.Position);
                 currentNode = currentNode.PrevNode;
             }
             result.Reverse();
-            return result;
+            return result.Skip(1).ToList();
         }
     }
 }
