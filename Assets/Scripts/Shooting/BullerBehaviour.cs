@@ -14,7 +14,8 @@ public class BullerBehaviour : MonoBehaviour
     void Awake ()
     {
         SpriteRenderer bulletSprite = this.GetComponent<SpriteRenderer>();
-        bulletSprite.sprite = Sprites[Random.Range(0, Sprites.Length)];
+        if (Sprites.Length > 0)
+            bulletSprite.sprite = Sprites[Random.Range(0, Sprites.Length)];
         Destroy (this.gameObject, 5f);
     }
 
