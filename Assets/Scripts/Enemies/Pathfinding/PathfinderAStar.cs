@@ -84,7 +84,7 @@ namespace Enemies.Pathfinding
 
                 var hit = Physics2D.OverlapBox(point, new Vector2(1, 1), 0);
                 
-                if (hit != null && (hit.gameObject.CompareTag("Wall") || hit.gameObject.CompareTag("Enemy")))
+                if (hit != null && hit.gameObject.CompareTag("Wall"))
                 {
                     Debug.Log("oops");
                     continue;
