@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 {
     public int currentHealth;
     public int maxHealth;
+    public HealthBar healthBar;
 
     public void Update()
     {
@@ -21,9 +22,10 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
             Destroy(gameObject);
+        healthBar.SetHealth(currentHealth);
     }
 
-    public void SetHealth(int bonusHealth)
+    public void Healing(int bonusHealth)
     {
         currentHealth += bonusHealth;
         if (currentHealth > maxHealth)

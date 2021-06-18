@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5404827496700235094}
   - component: {fileID: 5404827496700235097}
   - component: {fileID: 5404827496700235091}
+  - component: {fileID: -1267526460160373796}
   - component: {fileID: 5404827496700235092}
   - component: {fileID: 5404827496700235093}
   m_Layer: 2
@@ -116,6 +117,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c200334440b4f75999ad650d0b47a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1267526460160373796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5404827496700235096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b8075f8364c8549b0b3368421da5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDamage: 3
+  tag: Player
+  healthBar: {fileID: 0}
 --- !u!50 &5404827496700235092
 Rigidbody2D:
   serializedVersion: 4
