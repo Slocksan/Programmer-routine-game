@@ -6996,8 +6996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -29.7735, y: 0.4482}
-  m_SizeDelta: {x: 333.8702, y: 88.8487}
+  m_AnchoredPosition: {x: -25.54, y: 0.06}
+  m_SizeDelta: {x: 283.63, y: 64.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &721913252
 MonoBehaviour:
@@ -9418,6 +9418,7 @@ GameObject:
   - component: {fileID: 926830295}
   - component: {fileID: 926830297}
   - component: {fileID: 926830298}
+  - component: {fileID: 926830302}
   - component: {fileID: 926830299}
   - component: {fileID: 926830301}
   - component: {fileID: 926830300}
@@ -9576,6 +9577,20 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 1189473838}
+--- !u!114 &926830302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926830294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1e0cb246d0ad94ca920f525b8a0044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
 --- !u!1 &939452623
 GameObject:
   m_ObjectHideFlags: 0
@@ -10992,8 +11007,8 @@ Canvas:
   m_GameObject: {fileID: 1052974173}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -11002,7 +11017,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1052974177
 RectTransform:
@@ -11667,8 +11682,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 208, y: -69.7}
-  m_SizeDelta: {x: 256.6448, y: 57.6199}
+  m_AnchoredPosition: {x: 189.41, y: -61.690002}
+  m_SizeDelta: {x: 219.47, y: 41.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189473838
 MonoBehaviour:
