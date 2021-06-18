@@ -75,16 +75,16 @@ namespace Enemies.Pathfinding
             {
                 if (point.x >= bottomRightBorder.x)
                     continue;
-                if(point.x < topLeftBorder.x)
+                if (point.x < topLeftBorder.x)
                     continue;
                 if (point.y > topLeftBorder.y)
                     continue;
-                if(point.y <= bottomRightBorder.y)
+                if (point.y <= bottomRightBorder.y)
                     continue;
 
                 var hit = Physics2D.OverlapBox(point, new Vector2(1, 1), 0);
-                
-                if (hit != null && hit.gameObject.CompareTag("Wall"))
+
+                if (hit != null && (hit.gameObject.CompareTag("Wall") || hit.gameObject.CompareTag("Enemy")))
                 {
                     Debug.Log("oops");
                     continue;

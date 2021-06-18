@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 using Enemies.Pathfinding;
-using UnityEngine.Serialization;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -19,13 +14,14 @@ public class EnemyBehaviour : MonoBehaviour
     
     private Rigidbody2D rb;
     private Vector2 moveDirection;
-    private bool playerInVision = false;
+    private bool playerWasInVision = false;
 
 
     private PathfinderAStar PathfinderAStar;
     private List<Vector2> trackList;
     private Vector2 currentWayPoint;
     private int indexOfWayPoint = 0;
+    private bool isRealToFind = false;
     
     void Start()
     {
@@ -36,30 +32,34 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = target.transform.position - transform.position;
-        float angle = -Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-
         if (Vector2.Distance(rb.position, target.transform.position) < distanceOfView)
         {
+            Vector2 direction = target.transform.position - transform.position;
+            float angle = -Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+            
             var hit = Physics2D.Raycast(rb.transform.position, direction.normalized);
 
             if (hit.collider.gameObject == target)
             {
-                playerInVision = true;
+                playerWasInVision = true;
+                isRealToFind = true;
                 trackList = null;
                 indexOfWayPoint = 0;
                 moveDirection = direction.normalized;
                 rb.rotation = angle;
             }
-            else if (playerInVision)
+            else if (playerWasInVision && isRealToFind)
             {
-                playerInVision = false;
+                playerWasInVision = false;
                 moveDirection = Vector2.zero;
                 trackList = PathfinderAStar
                     .FindPath(topLeftBorder, bottomRightBorder,
                         rb.transform.position, target.transform.position);
+                if (trackList == null)
+                    isRealToFind = false;
+
             }
-            else if (moveDirection == Vector2.zero)
+            else if (isRealToFind && trackList == null)
             {
                 trackList = PathfinderAStar
                     .FindPath(topLeftBorder, bottomRightBorder,
@@ -69,20 +69,25 @@ public class EnemyBehaviour : MonoBehaviour
         else
         {
             moveDirection = Vector2.zero;
+            playerWasInVision = false;
+            isRealToFind = false;
         }
     }
 
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + 
-                        moveDirection * speed * Time.fixedDeltaTime);
         if(trackList != null)
         {
-            if(trackList.Count > indexOfWayPoint)
+            if (trackList.Count > indexOfWayPoint)
+            {
                 currentWayPoint = trackList[indexOfWayPoint];
-            walk();
+                walk();
+            }
         }
+        else
+            rb.MovePosition(rb.position + 
+                            moveDirection * speed * Time.fixedDeltaTime);
     }
     
     void walk()
