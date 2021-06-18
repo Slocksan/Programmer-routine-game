@@ -6,13 +6,14 @@ using UnityEngine;
 
 namespace Enemies.Pathfinding
 {
-    public class PathfinderAStar
+    public class PathfinderAStar : MonoBehaviour
     {
-        public static List<Vector2> FindPath(Vector2 topLeftBorder, Vector2 bottomRightBorder, Vector2 start, Vector2 target)
+        public List<Vector2> FindPath(Vector2 topLeftBorder, Vector2 bottomRightBorder, Vector2 start, Vector2 target)
         {
             var visitedNodes = new HashSet<PathNode>();
             var toOpen = new HashSet<PathNode>();
-            
+            var itteration = 0;
+
             PathNode startNode = new PathNode()
             {
                 Position = start,
@@ -24,6 +25,9 @@ namespace Enemies.Pathfinding
             toOpen.Add(startNode);
             while (toOpen.Count > 0)
             {
+                if (itteration == 2000)
+                    return null;
+                itteration++;
                 var currentNode = toOpen.OrderBy(node => 
                     node.EstimateFullPathLength).First();
 
@@ -54,7 +58,7 @@ namespace Enemies.Pathfinding
             return null;
         }
         
-        private static List<PathNode> GetNeighbours(PathNode pathNode, 
+        private List<PathNode> GetNeighbours(PathNode pathNode, 
             Vector2 goal, Vector2 topLeftBorder, Vector2 bottomRightBorder)
         {
             var result = new List<PathNode>();
@@ -77,10 +81,15 @@ namespace Enemies.Pathfinding
                     continue;
                 if(point.y <= bottomRightBorder.y)
                     continue;
+
+                var hit = Physics2D.OverlapBox(point, new Vector2(1, 1), 0);
                 
-                if (Physics.CheckSphere(new Vector3(point.x, point.y), 1))
+                if (hit != null && (hit.gameObject.CompareTag("Wall") || hit.gameObject.CompareTag("Enemy")))
+                {
+                    Debug.Log("oops");
                     continue;
-                
+                }
+
                 var neighbourNode = new PathNode()
                 {
                     Position = point,
@@ -93,13 +102,11 @@ namespace Enemies.Pathfinding
             return result;
         }
         
-        private static List<Vector2> GetPathForNode(PathNode pathNode)
+        private List<Vector2> GetPathForNode(PathNode pathNode)
         {
             var result = new List<Vector2>();
             var currentNode = pathNode;
 
-            var isFirst = true;
-            
             while (currentNode != null)
             {
                 result.Add(currentNode.Position);
