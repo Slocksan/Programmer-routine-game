@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Health.currentHealth = Health.maxHealth;
-        healthBar.SetMaxHealth(Health.maxHealth);
+        var health = GetComponent<Health>();
+        health.currentHealth = health.maxHealth;
+        healthBar.SetMaxHealth(health.maxHealth);
     }
 }
