@@ -37,7 +37,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         Vector2 direction = target.transform.position - transform.position;
-        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        float angle = -Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
 
         if (Vector2.Distance(rb.position, target.transform.position) < distanceOfView)
         {
@@ -85,9 +85,10 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
     
-    void walk(){
-        Vector2 direction = currentWayPoint - (Vector2)rb.transform.position;
-        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+    void walk()
+    {
+        Vector2 direction = currentWayPoint - (Vector2) rb.transform.position;
+        float angle = -Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         
         moveDirection = direction.normalized;
         rb.rotation = angle;
