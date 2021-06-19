@@ -40,6 +40,7 @@ public class Health : MonoBehaviour
         currentHealth += bonusHealth;
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
+        if (player != null)
+            player.healthBar.SetHealth(currentHealth);
     }
-
 }
