@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -3970100973735164886}
   - component: {fileID: 8474861592966811331}
   - component: {fileID: -7214828423174922020}
+  - component: {fileID: 5226559126634014628}
   m_Layer: 0
   m_Name: HeavyLauncher
   m_TagString: Untagged
@@ -161,3 +162,18 @@ MonoBehaviour:
   Sprites:
   - {fileID: 21300000, guid: 8bc8d2183144aad4d8455e246f3e70ad, type: 3}
   RicochetChance: 0
+--- !u!114 &5226559126634014628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441895681158769507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b8075f8364c8549b0b3368421da5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDamage: 10
+  tag: Enemy
+  healthBar: {fileID: 0}

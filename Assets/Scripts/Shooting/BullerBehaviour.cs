@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using Random = UnityEngine.Random;
 
 public class BullerBehaviour : MonoBehaviour
@@ -21,9 +22,14 @@ public class BullerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Wall" && Random.Range(0f, 1f) > RicochetChance)
+        if (other.gameObject.CompareTag("Wall") && Random.Range(0f, 1f) > RicochetChance)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Enemy") && Random.Range(0f, 1f) > RicochetChance)
+        {
+            Destroy(gameObject);
         }
     }
 }

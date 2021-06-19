@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,14 @@ public class Health : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
     public HealthBar healthBar;
+
+    private Player player;
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        player = GetComponent<Player>();
+    }
 
     public void Update()
     {
@@ -22,7 +31,8 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
             Destroy(gameObject);
-        healthBar.SetHealth(currentHealth);
+        if (player != null)
+            player.healthBar.SetHealth(currentHealth);
     }
 
     public void Healing(int bonusHealth)

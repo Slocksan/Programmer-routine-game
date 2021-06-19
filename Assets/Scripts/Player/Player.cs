@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
     {
         health.currentHealth = health.maxHealth;
         healthBar.SetMaxHealth(100/*health.maxHealth*/);
-        healthBar.SetHealth(50);
-        
     }
     private void Update()
     {

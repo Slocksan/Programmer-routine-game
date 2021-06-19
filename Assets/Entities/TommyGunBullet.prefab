@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2495909635232361614}
   - component: {fileID: 5243763974669070009}
   - component: {fileID: 2849452857378332858}
+  - component: {fileID: -5781131923285660092}
   m_Layer: 0
   m_Name: TommyGunBullet
   m_TagString: Untagged
@@ -150,3 +151,19 @@ MonoBehaviour:
   - {fileID: -8028908101293897662, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
   - {fileID: -2856334601536584669, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
   - {fileID: -6276712167630267867, guid: 6218ed61039eb0c4b91bdd08e6a63a01, type: 3}
+  RicochetChance: 0
+--- !u!114 &-5781131923285660092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001574182270493213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b8075f8364c8549b0b3368421da5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDamage: 3
+  tag: Enemy
+  healthBar: {fileID: 0}
