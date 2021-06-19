@@ -9,11 +9,14 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject secondBulletPrefab;
 
+    public int lightGunDamageBonus = 0;
+    public int heavyGunDamageBonus = 0;
+    
     public float bulletSpeed = 20f;
     public float secondPulletSpeed = 50f;
 
-    public float heavyShootDelay = 1;
-    public float lightShootDelay = 0.25f;
+    public float heavyShotsPerMinute = 60;
+    public float lightShotsPerMinute = 240;
 
     private float lastTimeShoot;
 
@@ -27,12 +30,12 @@ public class Shooting : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            if (Time.time - lastTimeShoot > lightShootDelay)
+            if (Time.time - lastTimeShoot > 60 / lightShotsPerMinute)
                 ShootLight();
         }
         else if (Input.GetButton("Fire2"))
         {
-            if (Time.time - lastTimeShoot > heavyShootDelay)
+            if (Time.time - lastTimeShoot > 60 / heavyShotsPerMinute)
                 ShootHeavy();
         }
     }
@@ -40,6 +43,10 @@ public class Shooting : MonoBehaviour
     {
         GameObject tommyGunBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = tommyGunBullet.GetComponent<Rigidbody2D>();
+        
+        var damage = tommyGunBullet.GetComponent<CollisionDamage>();
+        damage.collisionDamage = 3 + lightGunDamageBonus;
+        
         rb.AddForce(firePoint.up * bulletSpeed, ForceMode2D.Impulse);
         lastTimeShoot = Time.time;
     }
@@ -48,6 +55,10 @@ public class Shooting : MonoBehaviour
     {
         GameObject heavyBullet = Instantiate(secondBulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = heavyBullet.GetComponent<Rigidbody2D>();
+
+        var damage = heavyBullet.GetComponent<CollisionDamage>();
+        damage.collisionDamage = 10 + heavyGunDamageBonus;
+        
         rb.AddForce(firePoint.up * secondPulletSpeed, ForceMode2D.Impulse);
         lastTimeShoot = Time.time;
     }
