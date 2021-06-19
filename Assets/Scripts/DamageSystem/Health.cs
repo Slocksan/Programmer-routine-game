@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Health : MonoBehaviour
@@ -9,6 +10,7 @@ public class Health : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
     public HealthBar healthBar;
+    public LoadScene loadScene;
 
     private Player player;
 
@@ -29,10 +31,12 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
-            Destroy(gameObject);
         if (player != null)
             player.healthBar.SetHealth(currentHealth);
+        
+        if (currentHealth <= 0)
+            Destroy(gameObject);
+
     }
 
     public void Healing(int bonusHealth)
